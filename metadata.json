@@ -1,0 +1,7 @@
+{
+  "name": "Logística AI",
+  "description": "Plataforma moderna para la gestión de distribución capilar y transporte de mercancías potenciada por Gemini AI.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
