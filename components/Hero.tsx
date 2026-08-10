@@ -1,67 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Box, Globe, Activity } from 'lucide-react';
+import { ArrowRight, Box, CheckCircle2, Globe, Sparkles, TrendingUp } from 'lucide-react';
 
-export const Hero: React.FC = () => {
-  return (
-    <header id="inicio" className="relative overflow-hidden bg-slate-900 pt-20 pb-16 sm:py-32">
-        {/* Abstract Background Shapes - Reduced for mobile performance */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-10 sm:opacity-20 pointer-events-none">
-            <div className="absolute -top-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-brand-500 blur-3xl animate-pulse-slow"></div>
-            <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-purple-500 blur-3xl animate-pulse-slow delay-700"></div>
+export const Hero: React.FC = () => (
+  <header id="inicio" className="relative isolate overflow-hidden bg-[#063b5c]">
+    <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(24,160,251,0.34),transparent_34%),radial-gradient(circle_at_90%_10%,rgba(125,211,252,0.18),transparent_28%),linear-gradient(135deg,#063b5c_0%,#082f49_55%,#071f32_100%)]" />
+    <div className="absolute -right-24 top-20 -z-10 h-72 w-72 rounded-full bg-brand-400/15 blur-3xl sm:h-96 sm:w-96" />
+    <div className="container mx-auto grid max-w-7xl items-center gap-14 px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-28">
+      <div className="text-left">
+        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-white/10 px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-100 backdrop-blur sm:text-xs"><span className="h-2 w-2 rounded-full bg-cyan-300" />Logística 4.0 · IA aplicada</div>
+        <h1 className="max-w-3xl text-4xl font-bold leading-[1.04] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">Decide mejor.<span className="block bg-gradient-to-r from-cyan-200 via-brand-300 to-white bg-clip-text text-transparent">Reparte mejor.</span></h1>
+        <p className="mt-7 max-w-xl text-base leading-7 text-slate-200 sm:text-lg">Planifica rutas, resuelve documentación y entiende el rendimiento de tu distribución desde un solo lugar.</p>
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <Link to="/tools" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-brand-500 px-6 text-sm font-bold text-white shadow-[0_16px_35px_rgba(24,160,251,0.28)] transition hover:-translate-y-0.5 hover:bg-brand-400 sm:px-7">Explorar herramientas<ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></Link>
+          <Link to="/dashboard" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15 sm:px-7">Ver rendimiento <TrendingUp size={18} /></Link>
         </div>
-
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-900/50 border border-brand-500/30 text-brand-300 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-            </span>
-            Logística 4.0 Pro
-        </div>
-        
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-          Distribución Capilar <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-400">
-            Inteligente
-          </span>
-        </h1>
-        
-        <p className="text-sm sm:text-lg text-slate-300 mb-10 max-w-xl mx-auto leading-relaxed px-4">
-          Optimizando la última milla con Gemini AI. Gestión de rutas en tiempo real y cumplimiento legal garantizado.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
-          <Link 
-            to="/tools" 
-            className="group flex items-center justify-center gap-3 bg-brand-600 text-white font-black uppercase tracking-widest text-xs px-10 py-5 rounded-2xl shadow-xl hover:bg-brand-500 transition-all active:scale-95"
-          >
-            Panel de Control
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link 
-            to="/program" 
-            className="flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md text-white font-bold uppercase tracking-widest text-xs px-10 py-5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all"
-          >
-            Programa
-          </Link>
-        </div>
-
-        <div className="mt-16 grid grid-cols-3 gap-4 text-white/40 text-[9px] font-black uppercase tracking-[0.2em] max-w-2xl mx-auto border-t border-white/5 pt-8">
-            <div className="flex flex-col items-center gap-2">
-                <Box size={20} className="text-brand-500" />
-                <span>Carga</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 border-x border-white/5">
-                <Globe size={20} className="text-purple-500" />
-                <span>Global</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-                <Activity size={20} className="text-pink-500" />
-                <span>Real-Time</span>
-            </div>
+        <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-slate-300">{['Diseñado para última milla', 'Flujos claros', 'Datos accionables'].map((item) => <span key={item} className="inline-flex items-center gap-2"><CheckCircle2 size={15} className="text-cyan-300" />{item}</span>)}</div>
+      </div>
+      <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+        <div className="absolute -inset-5 rounded-[2rem] bg-cyan-300/10 blur-2xl" />
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur-xl sm:p-5">
+          <div className="flex items-center justify-between border-b border-white/10 px-2 pb-4"><div><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-200">Centro de control</p><p className="mt-1 text-sm font-semibold text-white">Operación de hoy</p></div><div className="rounded-xl bg-emerald-400/15 p-2.5 text-emerald-200"><Sparkles size={18} /></div></div>
+          <div className="grid grid-cols-2 gap-3 py-4"><div className="rounded-2xl bg-white/10 p-4"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Entregas</p><p className="mt-2 text-3xl font-bold tracking-tight text-white">94%</p><p className="mt-1 text-xs text-emerald-200">+8,4% esta semana</p></div><div className="rounded-2xl bg-white/10 p-4"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Rutas</p><p className="mt-2 text-3xl font-bold tracking-tight text-white">28</p><p className="mt-1 text-xs text-cyan-200">listas para salir</p></div></div>
+          <div className="rounded-2xl border border-white/10 bg-[#052b44]/80 p-4"><div className="flex items-center justify-between"><span className="text-xs font-semibold text-white">Estado de la red</span><span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-200"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />Estable</span></div><div className="mt-4 flex items-end gap-1.5">{[35,55,43,68,52,76,62,84,72,92].map((height, index) => <span key={index} className="flex-1 rounded-t bg-gradient-to-t from-brand-500/40 to-cyan-200" style={{ height: height + 'px' }} />)}</div><div className="mt-3 flex items-center justify-between text-[10px] text-slate-400"><span>08:00</span><span>Ahora</span></div></div>
+          <div className="mt-3 flex items-center gap-3 rounded-2xl bg-white/5 p-3 text-xs text-slate-300"><div className="rounded-xl bg-white/10 p-2 text-cyan-200"><Box size={16} /></div>Visibilidad operativa en tiempo real<Globe size={15} className="ml-auto text-slate-400" /></div>
         </div>
       </div>
-    </header>
-  );
-};
+    </div>
+  </header>
+);
