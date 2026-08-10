@@ -11,103 +11,33 @@ import { ContentBlocks } from './components/ContentBlocks';
 import { Dashboard } from './components/Dashboard';
 import { Map, Scale, BrainCircuit, ArrowUpRight } from 'lucide-react';
 
-// Utility to scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 };
+
+const FeatureCard = ({ to, image, alt, icon: Icon, iconClass, title, children }: { to: string; image: string; alt: string; icon: React.ElementType; iconClass: string; title: string; children: React.ReactNode }) => (
+  <Link to={to} className="group relative flex min-h-[420px] flex-col overflow-hidden rounded-3xl shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="absolute inset-0 bg-slate-900"><img src={image} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-110 group-hover:opacity-40" /><div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" /></div>
+    <div className="relative mt-auto p-8 text-left">
+      <div className={'mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 text-white backdrop-blur-md transition-all duration-500 group-hover:scale-110 ' + iconClass}><Icon size={28} /></div>
+      <h3 className="mb-2 flex items-center gap-2 text-2xl font-black text-white">{title}<ArrowUpRight size={20} className="opacity-0 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" /></h3>
+      <p className="mb-4 text-sm leading-relaxed text-slate-300">{children}</p><div className="h-1 w-0 bg-brand-500 transition-all duration-500 group-hover:w-full" />
+    </div>
+  </Link>
+);
 
 const HomePage = () => (
   <>
     <Hero />
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 text-center max-w-6xl">
-        <div className="mb-16">
-          <span className="text-brand-600 font-black uppercase tracking-[0.2em] text-xs">Ecosistema Logístico</span>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-4 mb-6 tracking-tight">Eficiencia de Vanguardia</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
-            Optimiza cada eslabón de tu cadena de suministro con herramientas diseñadas para el transporte moderno y la distribución de última milla.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Tarjeta Rutas */}
-          <Link to="/tools" className="group relative flex flex-col h-[420px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-slate-900">
-              <img 
-                src="https://images.unsplash.com/photo-1524230659192-35f3dfee46f1?q=80&w=800&auto=format&fit=crop" 
-                alt="Optimización de Rutas" 
-                className="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            </div>
-            <div className="relative mt-auto p-8 text-left">
-              <div className="w-14 h-14 bg-brand-500/20 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-white mb-4 group-hover:bg-brand-500 group-hover:scale-110 transition-all duration-500">
-                <Map size={28} />
-              </div>
-              <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-2">
-                Planificación de Rutas
-                <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                Algoritmos inteligentes para minimizar distancias, tiempos de entrega y costes operativos en entornos urbanos complejos.
-              </p>
-              <div className="h-1 w-0 bg-brand-500 group-hover:w-full transition-all duration-500"></div>
-            </div>
-          </Link>
-
-          {/* Tarjeta Legal */}
-          <Link to="/tools" className="group relative flex flex-col h-[420px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-slate-900">
-              <img 
-                src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=800&auto=format&fit=crop" 
-                alt="Cumplimiento Legal" 
-                className="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            </div>
-            <div className="relative mt-auto p-8 text-left">
-              <div className="w-14 h-14 bg-purple-500/20 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-white mb-4 group-hover:bg-purple-500 group-hover:scale-110 transition-all duration-500">
-                <Scale size={28} />
-              </div>
-              <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-2">
-                Asesoría Legal AI
-                <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                Generación instantánea de cláusulas CMR, LOTT y ROTT adaptadas a tus necesidades contractuales específicas.
-              </p>
-              <div className="h-1 w-0 bg-purple-500 group-hover:w-full transition-all duration-500"></div>
-            </div>
-          </Link>
-
-          {/* Tarjeta Experto */}
-          <Link to="/consultant" className="group relative flex flex-col h-[420px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-slate-900">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" 
-                alt="Consultoría Técnica" 
-                className="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            </div>
-            <div className="relative mt-auto p-8 text-left">
-              <div className="w-14 h-14 bg-emerald-500/20 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-white mb-4 group-hover:bg-emerald-500 group-hover:scale-110 transition-all duration-500">
-                <BrainCircuit size={28} />
-              </div>
-              <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-2">
-                Consultoría Senior
-                <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                Resolución técnica sobre normativa ADR, tacógrafos y tiempos de conducción con precisión experta.
-              </p>
-              <div className="h-1 w-0 bg-emerald-500 group-hover:w-full transition-all duration-500"></div>
-            </div>
-          </Link>
+    <section className="bg-white py-20 sm:py-24">
+      <div className="container mx-auto max-w-7xl px-5 text-center sm:px-8">
+        <div className="mx-auto mb-12 max-w-2xl sm:mb-16"><span className="text-xs font-black uppercase tracking-[0.2em] text-brand-600">Ecosistema Logístico</span><h2 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">Todo lo importante, más claro</h2><p className="mx-auto mt-6 text-lg leading-relaxed text-slate-500">Un espacio de trabajo pensado para convertir la complejidad del transporte en decisiones sencillas y accionables.</p></div>
+        <div className="grid gap-6 md:grid-cols-3">
+          <FeatureCard to="/tools" image="https://images.unsplash.com/photo-1524230659192-35f3dfee46f1?q=80&w=800&auto=format&fit=crop" alt="Planificación de rutas" icon={Map} iconClass="bg-brand-500/20 group-hover:bg-brand-500" title="Planificación de rutas">Algoritmos inteligentes para minimizar distancias, tiempos de entrega y costes operativos.</FeatureCard>
+          <FeatureCard to="/tools" image="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=800&auto=format&fit=crop" alt="Cumplimiento legal" icon={Scale} iconClass="bg-purple-500/20 group-hover:bg-purple-500" title="Asesoría legal IA">Generación de cláusulas CMR, LOTT y ROTT adaptadas a tus necesidades contractuales.</FeatureCard>
+          <FeatureCard to="/consultant" image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Consultoría técnica" icon={BrainCircuit} iconClass="bg-emerald-500/20 group-hover:bg-emerald-500" title="Consultoría senior">Resuelve dudas sobre ADR, tacógrafos y tiempos de conducción con precisión experta.</FeatureCard>
         </div>
       </div>
     </section>
@@ -115,61 +45,21 @@ const HomePage = () => (
 );
 
 const ToolsPage = () => (
-  <section id="ia-tools" className="pt-24 pb-20 container mx-auto px-4 relative">
-    <div className="text-center mb-16 max-w-3xl mx-auto">
-        <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-bold tracking-wider uppercase mb-4">
-            Herramientas Profesionales
-        </span>
-        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Asistente Logístico Inteligente</h2>
-        <p className="text-slate-600 text-lg leading-relaxed">
-            Utiliza la potencia de los modelos <span className="font-semibold text-brand-600">Gemini 3 Pro</span> para resolver tareas complejas de planificación y documentación legal.
-        </p>
-    </div>
-    <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <AIToolCard type={ToolType.ROUTE} />
-        <AIToolCard type={ToolType.CONTRACT} />
-    </div>
+  <section id="ia-tools" className="container relative mx-auto max-w-7xl px-5 pb-20 pt-20 sm:px-8 sm:pt-24">
+    <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16"><span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-700">Herramientas profesionales</span><h2 className="mb-6 text-3xl font-bold text-slate-900 sm:text-5xl">Asistente Logístico Inteligente</h2><p className="text-lg leading-relaxed text-slate-600">Utiliza Gemini para resolver tareas complejas de planificación y documentación legal.</p></div>
+    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2"><AIToolCard type={ToolType.ROUTE} /><AIToolCard type={ToolType.CONTRACT} /></div>
   </section>
 );
 
 const ProgramPage = () => (
   <>
-    <UnitsSection />
-    <ContentBlocks />
-    <section id="competencias" className="py-20 bg-slate-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-8">Competencias Profesionales</h2>
-            <div className="flex flex-wrap justify-center gap-4">
-                {['Organización de rutas', 'Gestión de costes', 'Legislación vigente', 'Atención al cliente', 'Tecnología aplicada', 'Normativa ADR', 'Comercio Exterior'].map((skill) => (
-                    <span key={skill} className="px-6 py-3 rounded-full border border-slate-700 bg-slate-800/50 hover:bg-brand-600 hover:border-brand-500 transition-colors cursor-default">
-                        {skill}
-                    </span>
-                ))}
-            </div>
-        </div>
-    </section>
+    <UnitsSection /><ContentBlocks />
+    <section id="competencias" className="bg-slate-900 py-20 text-white"><div className="container mx-auto px-5 text-center sm:px-8"><h2 className="mb-8 text-3xl font-bold">Competencias Profesionales</h2><div className="flex flex-wrap justify-center gap-3">{['Organización de rutas', 'Gestión de costes', 'Legislación vigente', 'Atención al cliente', 'Tecnología aplicada', 'Normativa ADR', 'Comercio Exterior'].map((skill) => <span key={skill} className="cursor-default rounded-full border border-slate-700 bg-slate-800/50 px-5 py-3 transition-colors hover:border-brand-500 hover:bg-brand-600">{skill}</span>)}</div></div></section>
   </>
 );
 
 function App() {
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 flex flex-col">
-      <ScrollToTop />
-      <NavBar />
-      
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/tools" element={<ToolsPage />} />
-          <Route path="/consultant" element={<GeneralConsultant />} />
-          <Route path="/program" element={<ProgramPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </div>
-  );
+  return <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900"><ScrollToTop /><NavBar /><main id="contenido-principal" className="flex-1"><Routes><Route path="/" element={<HomePage />} /><Route path="/tools" element={<ToolsPage />} /><Route path="/consultant" element={<GeneralConsultant />} /><Route path="/program" element={<ProgramPage />} /><Route path="/dashboard" element={<Dashboard />} /></Routes></main><Footer /></div>;
 }
 
 export default App;
