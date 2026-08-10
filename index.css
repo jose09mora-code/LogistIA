@@ -1,31 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50: #eef7ff;
+  --color-brand-100: #d8edff;
+  --color-brand-500: #18a0fb;
+  --color-brand-600: #087fc9;
+  --color-brand-700: #0768a6;
+  --color-brand-800: #075785;
+  --color-brand-900: #063b5c;
+}
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #f6f9fc;
 }
 
 body {
   font-family: var(--font-sans);
   margin: 0;
+  min-width: 320px;
   padding: 0;
-  scroll-behavior: smooth;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(24, 160, 251, 0.08), transparent 28rem),
+    #f6f9fc;
   -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+button, a, input, textarea, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(24, 160, 251, 0.45);
+  outline-offset: 3px;
 }
 
 #root {
   min-height: 100vh;
 }
 
-/* Prevenir scroll elástico en iOS cuando el mapa está activo */
+::selection {
+  background: #18a0fb;
+  color: #ffffff;
+}
+
 .no-scroll {
   overflow: hidden;
   position: fixed;
@@ -38,14 +69,41 @@ body {
   z-index: 1;
 }
 
-/* Custom Scrollbar */
+img, svg {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #eef3f7;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
+  background: #b7c9d6;
+  border: 2px solid #eef3f7;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8eaabd;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
